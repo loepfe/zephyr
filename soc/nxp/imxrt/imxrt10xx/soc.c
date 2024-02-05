@@ -153,12 +153,12 @@ static ALWAYS_INLINE void clock_init(void)
 
 	/* Setting the VDD_SOC value.
 	 */
-	DCDC->REG3 = (DCDC->REG3 & (~DCDC_REG3_TRG_MASK)) | DCDC_REG3_TRG(CONFIG_DCDC_VALUE);
-	/* Waiting for DCDC_STS_DC_OK bit is asserted */
-	while (DCDC_REG0_STS_DC_OK_MASK !=
-			(DCDC_REG0_STS_DC_OK_MASK & DCDC->REG0)) {
-		;
-	}
+	// DCDC->REG3 = (DCDC->REG3 & (~DCDC_REG3_TRG_MASK)) | DCDC_REG3_TRG(CONFIG_DCDC_VALUE);
+	// /* Waiting for DCDC_STS_DC_OK bit is asserted */
+	// while (DCDC_REG0_STS_DC_OK_MASK !=
+	// 		(DCDC_REG0_STS_DC_OK_MASK & DCDC->REG0)) {
+	// 	;
+	// }
 
 #ifdef CONFIG_INIT_ARM_PLL
 	CLOCK_InitArmPll(&armPllConfig); /* Configure ARM PLL to 1200M */
