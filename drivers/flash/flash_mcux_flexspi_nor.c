@@ -1048,40 +1048,40 @@ static int flash_flexspi_nor_init(const struct device *dev)
 	 */
 	memcpy(&data->controller, config->controller, sizeof(struct device));
 
-	if (!device_is_ready(&data->controller)) {
-		LOG_ERR("Controller device is not ready");
-		return -ENODEV;
-	}
+	// if (!device_is_ready(&data->controller)) {
+	// 	LOG_ERR("Controller device is not ready");
+	// 	return -ENODEV;
+	// }
 
-	if (flash_flexspi_nor_probe(data)) {
-		if (memc_flexspi_is_running_xip(&data->controller)) {
-			/* We can't continue from here- the LUT stored in
-			 * the FlexSPI will be invalid so we cannot XIP.
-			 * Instead, spin here
-			 */
-			while (1) {
-				/* Spin */
-			}
-		}
-		LOG_ERR("SFDP probe failed");
-		return -EIO;
-	}
+	// if (flash_flexspi_nor_probe(data)) {
+	// 	if (memc_flexspi_is_running_xip(&data->controller)) {
+	// 		/* We can't continue from here- the LUT stored in
+	// 		 * the FlexSPI will be invalid so we cannot XIP.
+	// 		 * Instead, spin here
+	// 		 */
+	// 		while (1) {
+	// 			/* Spin */
+	// 		}
+	// 	}
+	// 	LOG_ERR("SFDP probe failed");
+	// 	return -EIO;
+	// }
 
-	/* Set the FlexSPI to full clock speed */
-	if (memc_flexspi_update_clock(&data->controller, &data->config,
-					data->port, data->config.flexspiRootClk)) {
-		LOG_ERR("Could not set flexspi clock speed");
-		return -ENOTSUP;
-	}
+	// /* Set the FlexSPI to full clock speed */
+	// if (memc_flexspi_update_clock(&data->controller, &data->config,
+	// 				data->port, data->config.flexspiRootClk)) {
+	// 	LOG_ERR("Could not set flexspi clock speed");
+	// 	return -ENOTSUP;
+	// }
 
 
-	memc_flexspi_reset(&data->controller);
+	// memc_flexspi_reset(&data->controller);
 
-	if (flash_flexspi_nor_read_id(dev, (uint8_t *)&vendor_id)) {
-		LOG_ERR("Could not read vendor id");
-		return -EIO;
-	}
-	LOG_DBG("Vendor id: 0x%0x", vendor_id);
+	// if (flash_flexspi_nor_read_id(dev, (uint8_t *)&vendor_id)) {
+	// 	LOG_ERR("Could not read vendor id");
+	// 	return -EIO;
+	// }
+	// LOG_DBG("Vendor id: 0x%0x", vendor_id);
 
 	return 0;
 }
