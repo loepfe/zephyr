@@ -911,6 +911,28 @@ static int flash_flexspi_nor_check_jedec(struct flash_flexspi_nor_data *data,
 				kFLEXSPI_Command_READ_SDR, kFLEXSPI_1PAD, 0x01);
 		/* Device uses bit 6 of status reg 1 for QE */
 		return flash_flexspi_nor_quad_enable(data, flexspi_lut, JESD216_DW15_QER_VAL_S1B6);
+	case 0x20C2:
+		/* Macronix MX25L3233F*/
+		/* Use 4 x I/O Read Mode (4READ) */
+		flexspi_lut[READ][0] = FLEXSPI_LUT_SEQ(
+				kFLEXSPI_Command_SDR, kFLEXSPI_1PAD, SPI_NOR_CMD_4READ,
+				kFLEXSPI_Command_RADDR_SDR, kFLEXSPI_4PAD, 24);
+		/* Flash needs 6 dummy cycles */
+		flexspi_lut[READ][1] = FLEXSPI_LUT_SEQ(
+				kFLEXSPI_Command_DUMMY_SDR, kFLEXSPI_4PAD, 6,
+				kFLEXSPI_Command_READ_SDR, kFLEXSPI_4PAD, 0x04);
+		/* Use 4 x I/O Page Program (4PP) */
+		flexspi_lut[PAGE_PROGRAM][0] = FLEXSPI_LUT_SEQ(
+				kFLEXSPI_Command_SDR, kFLEXSPI_1PAD, SPI_NOR_CMD_PP_1_4_4,
+				kFLEXSPI_Command_RADDR_SDR, kFLEXSPI_1PAD, 24);
+		flexspi_lut[PAGE_PROGRAM][1] = FLEXSPI_LUT_SEQ(
+				kFLEXSPI_Command_WRITE_SDR, kFLEXSPI_4PAD, 0x4,
+				kFLEXSPI_Command_STOP, kFLEXSPI_1PAD, 0x0);
+		/* Write in progress is bit 0 of status register */
+		data->legacy_poll = true;
+		// /* Device uses bit 6 of status reg 1 for QE */
+		// return flash_flexspi_nor_quad_enable(data, flexspi_lut, JESD216_DW15_QER_VAL_S1B6);
+		return 0;
 	default:
 		return -ENOTSUP;
 	}
