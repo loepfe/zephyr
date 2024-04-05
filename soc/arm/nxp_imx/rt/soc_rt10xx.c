@@ -36,7 +36,7 @@
 #ifdef CONFIG_INIT_ARM_PLL
 /* ARM PLL configuration for RUN mode */
 const clock_arm_pll_config_t armPllConfig = {
-	.loopDivider = 100U
+	.loopDivider = 88U
 };
 #endif
 
