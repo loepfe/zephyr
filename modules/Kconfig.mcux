@@ -386,5 +386,9 @@ config NXP_RF_IMU
 	select EVENTS
 	help
 	   RF_IMU adapter is needed for intercore messaging.
+config HAS_MCUX_XBARB
+	bool
+	help
+	  Set if the XBARA module is present on the SoC.
 
 endif # HAS_MCUX
