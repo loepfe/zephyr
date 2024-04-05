@@ -366,4 +366,9 @@ config HAS_MCUX_XBARA
 	help
 	  Set if the XBARA module is present on the SoC.
 
+config HAS_MCUX_XBARB
+	bool
+	help
+	  Set if the XBARA module is present on the SoC.
+
 endif # HAS_MCUX
