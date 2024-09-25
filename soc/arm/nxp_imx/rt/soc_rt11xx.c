@@ -170,7 +170,8 @@ static ALWAYS_INLINE void clock_init(void)
 #endif
 
 /* RT1160 does not have Forward Body Biasing on the CM7 core */
-#if defined(CONFIG_SOC_MIMXRT1176_CM4) || defined(CONFIG_SOC_MIMXRT1176_CM7)
+#if defined(CONFCONFIG_SOC_MIMXRT1176_CM7_INDUSTRIAL) 
+#elif defined(CONFIG_SOC_MIMXRT1176_CM4) || defined(CONFIG_SOC_MIMXRT1176_CM7)
 	/* Check if FBB need to be enabled in OverDrive(OD) mode */
 	if (((OCOTP->FUSEN[7].FUSE & 0x10U) >> 4U) != 1) {
 		PMU_EnableBodyBias(ANADIG_PMU, kPMU_FBB_CM7, true);
