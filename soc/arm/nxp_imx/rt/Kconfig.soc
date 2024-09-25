@@ -680,6 +680,9 @@ config SOC_SERIES_IMX_RT11XX
 config INIT_ARM_PLL
 	bool "Initialize ARM PLL"
 
+config SOC_MIMXRT1176_CM7_INDUSTRIAL
+	bool "Set ARM Clock to 600MHz (max for industrial)"
+
 config INIT_VIDEO_PLL
 	bool "Initialize Video PLL"
 
