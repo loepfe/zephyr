@@ -61,7 +61,7 @@ The key features of the EK-RA8M1 board are categorized in three groups as follow
 - 512 Mb (64 MB) External Octo-SPI Flash (present in the MCU Native Pin Access area of the EK-RA8M1 board)
 - CAN FD (3-pin header)
 
-.. figure:: ek-ra8m1-board.jpg
+.. figure:: ek_ra8m1.jpg
 	:align: center
 	:alt: RA8M1 Evaluation Kit
 
@@ -95,6 +95,18 @@ The below features are currently supported on Zephyr OS for EK-RA8M1 board:
 | NVIC      | on-chip    | arch/arm             |
 +-----------+------------+----------------------+
 | UART      | on-chip    | serial               |
++-----------+------------+----------------------+
+| CLOCK     | on-chip    | clock control        |
++-----------+------------+----------------------+
+| I2C       | on-chip    | i2c                  |
++-----------+------------+----------------------+
+| ENTROPY   | on-chip    | entropy              |
++-----------+------------+----------------------+
+| SPI       | on-chip    | spi                  |
++-----------+------------+----------------------+
+| FLASH     | on-chip    | flash                |
++-----------+------------+----------------------+
+| PWM       | on-chip    | pwm                  |
 +-----------+------------+----------------------+
 
 Other hardware features are currently not supported by the port.
